@@ -166,8 +166,9 @@ function drag_window --description "drag the clicked window to all visited works
             end
             set pws $cws
         else if $evadeEnabled
-            set -l windowFocused (i3-msg -t get_tree | jq '.. | select(.window==33554437)? | .focused')
-            if ! $windowFocused
+            set -l windowFocused (i3-msg -t get_tree | jq '.. | select(.window=='$wid')? | .focused')
+            set -l truev true
+            if ! [ "$windowFocused" = "$truev" ]
                 set -l c (DRAG_WINDOW_getCorner)
                 if [ "$lmouseCorner" != "$c" ]
                     set lmouseCorner $c
