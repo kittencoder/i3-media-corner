@@ -111,6 +111,9 @@ function drag_window --description "drag the clicked window to all visited works
                 return
         end
     end
+    if [ "$marginh" = "false" ]
+        set marginh $margin
+    end
 
     ### 
     ### Selection of window
@@ -258,25 +261,25 @@ function DRAG_WINDOW_setCorner --description "INTERNAL: set the window to a spec
     # calc positions
 
     # top-right (default)
-    set x (math "($w-$winWidth-$margin)")
+    set x (math "($w-$winWidth-$marginh)")
     set y (math "($margin)")
 
     switch $position
         case tl
             # top-left
-            set x (math "($margin)")
+            set x (math "($marginh)")
             set y (math "($margin)")
         case tr
             # top-right
-            set x (math "($w-$winWidth-$margin)")
+            set x (math "($w-$winWidth-$marginh)")
             set y (math "($margin)")
         case bl
             # bottom-left
-            set x (math "($margin)")
+            set x (math "($marginh)")
             set y (math "($h-$winHeight-$margin)")
         case br
             # bottom-right
-            set x (math "($w-$winWidth-$margin)")
+            set x (math "($w-$winWidth-$marginh)")
             set y (math "($h-$winHeight-$margin)")
     end
 
